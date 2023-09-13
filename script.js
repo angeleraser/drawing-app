@@ -4,10 +4,12 @@ const brushSizeText = document.getElementById("brush-size");
 const colorPicker = document.getElementById("color-picker");
 const canvasContext = canvas.getContext("2d");
 
+const controlsHeight = controls.getBoundingClientRect().height;
+
 function resizeCanvas() {
   const container = document.getElementById("container");
   canvas.width = container.getBoundingClientRect().width;
-  canvas.height = container.getBoundingClientRect().height - 88;
+  canvas.height = container.getBoundingClientRect().height - controlsHeight;
 }
 
 function drawLine({ fromX, fromY, toX, toY }) {
@@ -23,6 +25,20 @@ function drawLine({ fromX, fromY, toX, toY }) {
 function setMousePosition({ x, y }) {
   coords.x = x;
   coords.y = y;
+}
+
+function drawOnCanvas({ fromX, fromY, toX, toY }) {
+  drawLine({
+    fromX,
+    fromY,
+    toX,
+    toY,
+  });
+
+  setMousePosition({
+    x: toX,
+    y: toY,
+  });
 }
 
 let brushSize = 5;
@@ -57,15 +73,49 @@ canvas.addEventListener("mouseup", function () {
 canvas.addEventListener("mousemove", function ({ offsetX, offsetY }) {
   if (!isDrawing) return;
 
-  drawLine({
+  drawOnCanvas({
     fromX: coords.x,
     fromY: coords.y,
     toX: offsetX,
     toY: offsetY,
   });
-
-  setMousePosition({ x: offsetX, y: offsetY });
 });
+
+canvas.addEventListener(
+  "touchmove",
+  function ({ touches }) {
+    const { clientX, clientY } = touches[0];
+
+    drawOnCanvas({
+      fromX: coords.x,
+      fromY: coords.y,
+      toX: clientX - controlsHeight / 4,
+      toY: clientY - controlsHeight,
+    });
+  },
+  { passive: true }
+);
+
+canvas.addEventListener(
+  "touchstart",
+  function ({ touches }) {
+    isDrawing = true;
+    const { clientX, clientY } = touches[0];
+    setMousePosition({
+      x: clientX - controlsHeight / 4,
+      y: clientY - controlsHeight,
+    });
+  },
+  { passive: true }
+);
+
+canvas.addEventListener(
+  "touchend",
+  function () {
+    isDrawing = false;
+  },
+  { passive: true }
+);
 
 resizeCanvas();
 brushSizeText.textContent = brushSize;
