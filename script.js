@@ -81,41 +81,41 @@ canvas.addEventListener("mousemove", function ({ offsetX, offsetY }) {
   });
 });
 
-canvas.addEventListener(
-  "touchmove",
-  function ({ touches }) {
-    const { clientX, clientY } = touches[0];
+// canvas.addEventListener(
+//   "touchmove",
+//   function ({ touches }) {
+//     const { clientX, clientY } = touches[0];
 
-    drawOnCanvas({
-      fromX: coords.x,
-      fromY: coords.y,
-      toX: clientX - controlsHeight / 4,
-      toY: clientY - controlsHeight,
-    });
-  },
-  { passive: true }
-);
+//     drawOnCanvas({
+//       fromX: coords.x,
+//       fromY: coords.y,
+//       toX: clientX - controlsHeight / 4,
+//       toY: clientY - controlsHeight,
+//     });
+//   },
+//   { passive: true }
+// );
 
-canvas.addEventListener(
-  "touchstart",
-  function ({ touches }) {
-    isDrawing = true;
-    const { clientX, clientY } = touches[0];
-    setMousePosition({
-      x: clientX - controlsHeight / 4,
-      y: clientY - controlsHeight,
-    });
-  },
-  { passive: true }
-);
+// canvas.addEventListener(
+//   "touchstart",
+//   function ({ touches }) {
+//     isDrawing = true;
+//     const { clientX, clientY } = touches[0];
+//     setMousePosition({
+//       x: clientX - controlsHeight / 4,
+//       y: clientY - controlsHeight,
+//     });
+//   },
+//   { passive: true }
+// );
 
-canvas.addEventListener(
-  "touchend",
-  function () {
-    isDrawing = false;
-  },
-  { passive: true }
-);
+// canvas.addEventListener(
+//   "touchend",
+//   function () {
+//     isDrawing = false;
+//   },
+//   { passive: true }
+// );
 
 resizeCanvas();
 brushSizeText.textContent = brushSize;
