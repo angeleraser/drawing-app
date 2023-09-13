@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/index.css" />
+    <title>Drawing App</title>
+  </head>
+  <body>
+    <div id="container" class="container">
+      <canvas id="canvas"></canvas>
+      <div id="controls" class="controls">
+        <button data-control="decrease-width" class="control-btn">-</button>
+        <span id="brush-size" class="control-value">5</span>
+        <button data-control="increase-width" class="control-btn">+</button>
+        <input id="color-picker" type="color" class="control-btn" />
+        <button data-control="clear" class="control-btn"></button>
+      </div>
+    </div>
+
+    <script src="./script.js"></script>
+  </body>
+</html>

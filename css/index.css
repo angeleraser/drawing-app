@@ -1,0 +1,77 @@
+@import url("./reset.min.css");
+
+:root {
+  --palegrey: #f1f6f9;
+  --darkblue: #394867;
+  --black: #212a3e;
+  --grey: #9ba4b5;
+  --white: #fff;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-width: 375px;
+  min-height: 100vh;
+  padding: 20px;
+  background-color: var(--palegrey);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 90vh;
+  max-height: 720px;
+  width: 100%;
+  max-width: 720px;
+  border: 4px solid var(--darkblue);
+  border-radius: 4px;
+  background-color: var(--white);
+}
+
+.container canvas {
+  flex: 100%;
+}
+
+.container canvas {
+  cursor: crosshair;
+}
+
+.container .controls {
+  padding: 20px;
+  display: flex;
+  gap: 8px;
+  background-color: var(--darkblue);
+}
+
+.control-btn,
+.control-value {
+  color: var(--palegrey);
+  border: none;
+  outline: none;
+  font-size: 36px;
+  min-width: 42px;
+  height: 100%;
+  min-width: 48px;
+  border-radius: 4px;
+  text-align: center;
+}
+
+.control-btn {
+  cursor: pointer;
+  background-color: var(--grey);
+}
+
+.control-btn[data-control="clear"] {
+  margin-left: auto;
+}
+
+.control-btn[data-control="clear"]::after {
+  display: inline-block;
+  content: "+";
+  rotate: 45deg;
+}
